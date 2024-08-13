@@ -35,7 +35,13 @@
         </DockPanel>
         
         <!-- Action Cards -->
-        <ItemsControl Grid.Row="1" Grid.Column="1" Background="Coral"></ItemsControl>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Background="Coral" >
+            <TextBlock Background="Blue">Hello</TextBlock>
+            <tk:ActionCardControlZZ/>
+        </StackPanel>
+        <!-- <ItemsControl Grid.Row="1" Grid.Column="1" Background="Coral"> -->
+        <!--     <tk:ActionCardControl Width="100" Height="100" Background="White"/> -->
+        <!-- </ItemsControl> -->
         
         <!-- Map Board -->
         <ContentControl Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Background="Black" Padding="8">
@@ -121,10 +127,10 @@
                                     </TextBlock>
                                     
                                     <!-- Action Pips -->
-                                    <Ellipse Canvas.Left="10" Canvas.Top="100" Width="20" Height="20" IsVisible="{Binding Value < 3}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    <Ellipse Canvas.Left="25" Canvas.Top="125" Width="20" Height="20" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    <Ellipse Canvas.Left="40" Canvas.Top="100" Width="20" Height="20" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    <Ellipse Canvas.Left="55" Canvas.Top="125" Width="20" Height="20" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                    <Ellipse Canvas.Left="10" Canvas.Top="100" Width="20" Height="20" IsVisible="{Binding ShowPip1}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                    <Ellipse Canvas.Left="25" Canvas.Top="125" Width="20" Height="20" IsVisible="{Binding ShowPip2}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                    <Ellipse Canvas.Left="40" Canvas.Top="100" Width="20" Height="20" IsVisible="{Binding ShowPip3}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                    <Ellipse Canvas.Left="55" Canvas.Top="125" Width="20" Height="20" IsVisible="{Binding ShowPip4}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
                                     
                                     <Rectangle Canvas.Left="117" Canvas.Top="14" 
                                                Width="235" Height="486" 

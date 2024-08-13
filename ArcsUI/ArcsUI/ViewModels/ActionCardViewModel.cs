@@ -10,7 +10,6 @@ public partial class ActionCardViewModel : ViewModelBase
     //[ObservableProperty]
     //private string _playerName;
     private Suit _suit;
-    
     public ActionCardViewModel( ActionCard card )
     {
         _value = card.Value;
