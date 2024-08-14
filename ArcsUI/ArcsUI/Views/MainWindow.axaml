@@ -24,7 +24,7 @@
         </Style>
     </Window.Styles>
 
-    <Grid ColumnDefinitions="*,*,3*" RowDefinitions="Auto,2*,*,Auto"  Margin="4">
+    <Grid ColumnDefinitions="2*,*,3*" RowDefinitions="Auto,2*,*,Auto"  Margin="4">
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <TextBlock DockPanel.Dock="Right"  Text="{Binding ChapterText}"/>
             <TextBlock Text="Score Track goes here"  Background="Purple" Foreground="White"/>
@@ -34,10 +34,13 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Background="Coral" >
             
             <TextBlock Background="LightBlue">Hello</TextBlock>
-            <ItemsRepeater ItemsSource="{Binding LocalPlayerHand}">
+            <ItemsRepeater ItemsSource="{Binding RoundCards}">
+                <ItemsRepeater.Layout>
+                    <StackLayout Orientation="Vertical" Spacing="-150"/>
+                </ItemsRepeater.Layout>
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate>
-                        <tk:ActionCardControlZZ/>
+                        <tk:ActionCardControl/>
                     </DataTemplate>
                 </ItemsRepeater.ItemTemplate>
             </ItemsRepeater>
@@ -89,85 +92,7 @@
                 
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate>
-                        <Border 
-                            ClipToBounds="True"
-                            CornerRadius="8"
-                            BorderBrush="Black"
-                            Background="AntiqueWhite"
-                            BoxShadow="-2 2 6 2 #58020233"
-                            BorderThickness="1.5">
-                            <Viewbox Stretch="Uniform">
-                                <Canvas Width="372" Height="519">
-                                    
-                                    <!-- Ref image -->
-                                    <!--Image Source="/Assets/card_ref.jpg" Opacity="0.3"/ -->
-                                    
-                                    <!-- Number -->
-                                    <TextBlock Canvas.Left="24" Canvas.Top="9"
-                                               Foreground="{Binding Suit, Converter={StaticResource SuitColorConverter}}"
-                                               FontSize="80"
-                                               FontWeight="Heavy"
-                                               Text="{Binding Value}"/>
-                                    
-                                    <!-- Decree -->
-                                    <TextBlock Canvas.Left="20" Canvas.Top="450"
-                                               FontSize="40"
-                                               FontWeight="Bold"
-                                               Foreground="#222"
-                                               Text="XXX"/>
-                                    
-                                    <!-- Suit Text -->
-                                    <TextBlock Width="280" Height="50" Text="{Binding Suit}"
-                                           Canvas.Left="-95" Canvas.Top="270"
-                                           Foreground="{Binding Suit, Converter={StaticResource SuitColorConverter}}"
-                                           FontSize="35"
-                                           FontWeight="Bold"
-                                           VerticalAlignment="Bottom"
-                                           TextAlignment="Left">
-                                        <TextBlock.RenderTransform>
-                                            <RotateTransform Angle="-90"/>
-                                        </TextBlock.RenderTransform>
-                                    </TextBlock>
-                                    
-                                    <!-- Action Pips -->
-                                    <Ellipse Canvas.Left="10" Canvas.Top="100" Width="20" Height="20" IsVisible="{Binding ShowPip1}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    <Ellipse Canvas.Left="25" Canvas.Top="125" Width="20" Height="20" IsVisible="{Binding ShowPip2}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    <Ellipse Canvas.Left="40" Canvas.Top="100" Width="20" Height="20" IsVisible="{Binding ShowPip3}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    <Ellipse Canvas.Left="55" Canvas.Top="125" Width="20" Height="20" IsVisible="{Binding ShowPip4}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    
-                                    <Rectangle Canvas.Left="117" Canvas.Top="14" 
-                                               Width="235" Height="486" 
-                                               Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
-                                    
-                                    
-                                </Canvas>
-                            </Viewbox>
-                        </Border>
-                        <!--
-                        <Border Padding="8"
-                                Margin="2"
-                                CornerRadius="4"
-                                Background="AntiqueWhite"
-                                BorderBrush="Black"
-                                BoxShadow="-2 2 6 2 #58020233"
-                                BorderThickness="1.5"
-                        >
-                            <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,*">
-                            <TextBlock Grid.Column="0" Text="{Binding Value}" 
-                                       FontSize="24" FontWeight="Bold"/>
-                            
-                            <LayoutTransformControl Grid.Column="0" Grid.Row="1">
-                                <LayoutTransformControl.LayoutTransform>
-                                    <RotateTransform Angle="-90"/>
-                                </LayoutTransformControl.LayoutTransform>
-                                <TextBlock Text="{Binding Suit}" Background="Aquamarine" VerticalAlignment="Bottom" TextAlignment="Right"/>
-                            </LayoutTransformControl>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="X"/>
-                            
-                            <Border Width="60" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Background="Brown"/>
-                            </Grid>
-                        </Border>
-                        -->
+                        <tk:ActionCardControl/>
                     </DataTemplate>
                 </ItemsRepeater.ItemTemplate>
                 

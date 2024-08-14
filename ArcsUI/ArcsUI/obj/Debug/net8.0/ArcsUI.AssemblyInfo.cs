@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArcsUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00f467bcf315c8733ae995f1d1e8485f1e9bf994")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c94a7e4536bd32908d1495bbee97159dacf2f8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArcsUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArcsUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

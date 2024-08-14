@@ -24,6 +24,9 @@ public partial class ArcsGameViewModel : ViewModelBase
     [ObservableProperty]
     private ObservableCollection<ActionCard> _localPlayerHand;
     
+    [ObservableProperty]
+    private ObservableCollection<ActionCard> _roundCards;
+    
     public ArcsGameViewModel()
     {
         _chapter = 1;
@@ -41,6 +44,15 @@ public partial class ArcsGameViewModel : ViewModelBase
             int cardValue = new Random().Next(1, 8);
             Suit cardSuit = (Suit)new Random().Next(0, 4);
             _localPlayerHand.Add(new ActionCard( cardValue, cardSuit ));
+        }
+        
+        // Cards played this round (initially empty)
+        _roundCards = new();
+
+        {
+            int cardValue = new Random().Next(1, 8);
+            Suit cardSuit = (Suit) new Random().Next(0, 4);
+            _roundCards.Add(new ActionCard(cardValue, cardSuit));
         }
     }
 
