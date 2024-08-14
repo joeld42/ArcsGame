@@ -23,10 +23,6 @@
             <Setter Property="RingDraw" Value="PaleGoldenrod"/>
         </Style>
     </Window.Styles>
-    
-    <Window.Resources>
-        <tkh:SuitColorConverter x:Key="SuitColorConverter"/>
-    </Window.Resources>
 
     <Grid ColumnDefinitions="*,*,3*" RowDefinitions="Auto,2*,*,Auto"  Margin="4">
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
@@ -36,8 +32,15 @@
         
         <!-- Action Cards -->
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Background="Coral" >
-            <TextBlock Background="Blue">Hello</TextBlock>
-            <tk:ActionCardControlZZ/>
+            
+            <TextBlock Background="LightBlue">Hello</TextBlock>
+            <ItemsRepeater ItemsSource="{Binding LocalPlayerHand}">
+                <ItemsRepeater.ItemTemplate>
+                    <DataTemplate>
+                        <tk:ActionCardControlZZ/>
+                    </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+            </ItemsRepeater>
         </StackPanel>
         <!-- <ItemsControl Grid.Row="1" Grid.Column="1" Background="Coral"> -->
         <!--     <tk:ActionCardControl Width="100" Height="100" Background="White"/> -->
