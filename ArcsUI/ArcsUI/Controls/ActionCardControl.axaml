@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ArcsUI.ViewModels"
+             xmlns:model="using:ArcsUI.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="model:ActionCard"
+             x:Class="ArcsUI.Controls.ActionCardControl">
+    
+            <Border ClipToBounds="True"
+                        CornerRadius="8"
+                        BorderBrush="Black"
+                        Background="AntiqueWhite"
+                        BoxShadow="-2 2 6 2 #58020233"
+                        BorderThickness="1.5">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Width="372" Height="519">
+                                
+                                <!-- Ref image -->
+                                <!--Image Source="/Assets/card_ref.jpg" Opacity="0.3"/ -->
+                                
+                                <!-- Number -->
+                                <TextBlock Canvas.Left="24" Canvas.Top="9"
+                                           Foreground="{Binding Suit, Converter={StaticResource SuitColorConverter}}"
+                                           FontSize="80"
+                                           FontWeight="Heavy"
+                                           Text="{Binding Value}"/>
+                                
+                                <!-- Decree -->
+                                <TextBlock Canvas.Left="20" Canvas.Top="450"
+                                           FontSize="40"
+                                           FontWeight="Bold"
+                                           Foreground="#222"
+                                           Text="XXX"/>
+                                
+                                <!-- Suit Text -->
+                                <TextBlock Width="280" Height="50" Text="{Binding Suit}"
+                                       Canvas.Left="-95" Canvas.Top="270"
+                                       Foreground="{Binding Suit, Converter={StaticResource SuitColorConverter}}"
+                                       FontSize="35"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Bottom"
+                                       TextAlignment="Left">
+                                    <TextBlock.RenderTransform>
+                                        <RotateTransform Angle="-90"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                
+                                <!-- Action Pips -->
+                                <Ellipse Canvas.Left="10" Canvas.Top="100" Width="20" Height="20" IsVisible="{Binding ShowPip1}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                <Ellipse Canvas.Left="25" Canvas.Top="125" Width="20" Height="20" IsVisible="{Binding ShowPip2}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                <Ellipse Canvas.Left="40" Canvas.Top="100" Width="20" Height="20" IsVisible="{Binding ShowPip3}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                <Ellipse Canvas.Left="55" Canvas.Top="125" Width="20" Height="20" IsVisible="{Binding ShowPip4}" Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                
+                                <Rectangle Canvas.Left="117" Canvas.Top="14" 
+                                           Width="235" Height="486" 
+                                           Fill="{Binding Suit, Converter={StaticResource SuitColorConverter}}"/>
+                                
+                                
+                            </Canvas>
+                        </Viewbox>
+                    </Border>
+
+</UserControl>

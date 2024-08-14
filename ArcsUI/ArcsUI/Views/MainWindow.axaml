@@ -85,14 +85,16 @@
             
             <!-- Player Hand -->
             <!-- TextBlock Grid.Column="0" Text="Cards"  Background="SaddleBrown" Foreground="White"/-->
-            <ItemsRepeater Grid.Column="0"  ItemsSource="{Binding LocalPlayerHand}" Background="SaddleBrown">
+            <ItemsRepeater Grid.Column="0"
+                           ItemsSource="{Binding LocalPlayerHand}" 
+                           Background="SaddleBrown">
                 <ItemsRepeater.Layout>
                     <StackLayout Orientation="Horizontal" Spacing="-80"/>
                 </ItemsRepeater.Layout>
                 
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate>
-                        <tk:ActionCardControl/>
+                        <tk:ActionCardControl PointerPressed="OnPointerPressed"/>
                     </DataTemplate>
                 </ItemsRepeater.ItemTemplate>
                 

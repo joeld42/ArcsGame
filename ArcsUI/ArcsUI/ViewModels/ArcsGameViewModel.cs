@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using ArcsUI.Models;
+using Avalonia.Controls;
+using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ArcsUI.ViewModels;
@@ -44,6 +46,7 @@ public partial class ArcsGameViewModel : ViewModelBase
             int cardValue = new Random().Next(1, 8);
             Suit cardSuit = (Suit)new Random().Next(0, 4);
             _localPlayerHand.Add(new ActionCard( cardValue, cardSuit ));
+            Console.WriteLine( $"Dealt card {cardSuit} {cardValue}");
         }
         
         // Cards played this round (initially empty)
@@ -54,6 +57,24 @@ public partial class ArcsGameViewModel : ViewModelBase
             Suit cardSuit = (Suit) new Random().Next(0, 4);
             _roundCards.Add(new ActionCard(cardValue, cardSuit));
         }
+    }
+    
+    private async void OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        Console.WriteLine("DoDrag start");
+        if (sender is not Border border)
+        {
+            Console.WriteLine("Is not border.");
+            return;
+        }
+
+        if (border.DataContext is not ActionCard card)
+        {
+            Console.WriteLine("Is not card");
+            return;
+        }
+        
+        Console.WriteLine($"Is card {card.Suit} {card.Value}");
     }
 
 }
