@@ -21,6 +21,10 @@ public partial class ArcsGameViewModel : ViewModelBase
     public ArcsPlayerState TestPlayerState = new();
     
     [ObservableProperty]
+    private string _actionPrompt = "Play Lead...";
+
+    
+    [ObservableProperty]
     private ObservableCollection<ArcsPlayerState> _players;
 
     [ObservableProperty]
@@ -52,29 +56,47 @@ public partial class ArcsGameViewModel : ViewModelBase
         // Cards played this round (initially empty)
         _roundCards = new();
 
-        {
-            int cardValue = new Random().Next(1, 8);
-            Suit cardSuit = (Suit) new Random().Next(0, 4);
-            _roundCards.Add(new ActionCard(cardValue, cardSuit));
-        }
+        // {
+        //     for (int i = 0; i < 3; i++)
+        //     {
+        //         int cardValue = new Random().Next(1, 8);
+        //         Suit cardSuit = (Suit)new Random().Next(0, 4);
+        //         _roundCards.Add(new ActionCard(cardValue, cardSuit));
+        //     }
+        // }
     }
     
-    private async void OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    public void PlayActionCard( ActionCard card )
     {
-        Console.WriteLine("DoDrag start");
-        if (sender is not Border border)
+        ActionCard leadCard = null;
+        if (_roundCards.Count > 0)
         {
-            Console.WriteLine("Is not border.");
-            return;
-        }
-
-        if (border.DataContext is not ActionCard card)
-        {
-            Console.WriteLine("Is not card");
-            return;
+            leadCard = _roundCards[0];
         }
         
-        Console.WriteLine($"Is card {card.Suit} {card.Value}");
+        _roundCards.Add(card);
+        _localPlayerHand.Remove(card);
+        
+        if (leadCard == null)
+        {
+            ActionPrompt = $"Lead is {card.Suit}";
+        }
+        else
+        {
+            if ((leadCard.Suit == card.Suit) && ( card.Value > leadCard.Value ) )
+            {
+                ActionPrompt = "Surpass";
+            }
+            else if (leadCard.Suit == card.Suit)
+            {
+                ActionPrompt = "Copy";
+            }
+            else
+            {
+                ActionPrompt = "Pivot";
+            }
+        }
+        
     }
 
 }

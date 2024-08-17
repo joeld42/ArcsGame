@@ -23,17 +23,23 @@
             <Setter Property="RingDraw" Value="PaleGoldenrod"/>
         </Style>
     </Window.Styles>
-
-    <Grid ColumnDefinitions="2*,*,3*" RowDefinitions="Auto,2*,*,Auto"  Margin="4">
+    
+    <Panel Name="MainGrid" >
+    
+    <Grid ColumnDefinitions="2*,*,3*"
+          DragDrop.AllowDrop="True"
+          RowDefinitions="Auto,2*,*,Auto"  Margin="4">
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <TextBlock DockPanel.Dock="Right"  Text="{Binding ChapterText}"/>
             <TextBlock Text="Score Track goes here"  Background="Purple" Foreground="White"/>
         </DockPanel>
         
         <!-- Action Cards -->
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Background="Coral" >
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1"
+                    Name="PlayedActionCards"
+                    Background="Coral" DragDrop.AllowDrop="True" >
             
-            <TextBlock Background="LightBlue">Hello</TextBlock>
+            <TextBlock Text="{Binding ActionPrompt}" Background="LightBlue"/>
             <ItemsRepeater ItemsSource="{Binding RoundCards}">
                 <ItemsRepeater.Layout>
                     <StackLayout Orientation="Vertical" Spacing="-150"/>
@@ -61,6 +67,8 @@
         </ContentControl>
         
         <!-- Player Summaries -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Background="Peru">
+        
         <ItemsControl ItemsSource="{Binding Players}" Grid.Row="1" Grid.Column="0" Background="Orange">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -81,11 +89,15 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         
+        
+        </StackPanel>
+        
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" ColumnDefinitions="*,*">
             
             <!-- Player Hand -->
             <!-- TextBlock Grid.Column="0" Text="Cards"  Background="SaddleBrown" Foreground="White"/-->
             <ItemsRepeater Grid.Column="0"
+                           DragDrop.AllowDrop="True"
                            ItemsSource="{Binding LocalPlayerHand}" 
                            Background="SaddleBrown">
                 <ItemsRepeater.Layout>
@@ -102,7 +114,13 @@
 
             
             <!-- Player Board -->
-            <TextBlock Grid.Column="1" Text="Playerboard"  Background="SeaGreen" Foreground="White"/>
+            <StackPanel Grid.Column="1" Name="BlargStack" Orientation="Horizontal" Background="Peru">
+                <!-- <tk:ActionCardControl  -->
+                <!--     Name="GhostCard" Width="72" Height="100" -->
+                <!--     IsHitTestVisible="False" -->
+                <!--     /> -->
+                <TextBlock Text="Playerboard"  Background="SeaGreen" Foreground="White"/>
+            </StackPanel>
         </Grid>
         
         <!-- Action Row -->
@@ -115,5 +133,13 @@
         </DockPanel>
         
     </Grid>
-
+        <!-- <Canvas> -->
+            <tk:ActionCardControl 
+                Name="GhostCard" Width="72" Height="100"
+                Canvas.Top="0" Canvas.Left="0"
+                IsHitTestVisible="False"
+            />
+        <!-- </Canvas> -->
+    </Panel>
+        
 </Window>
